@@ -1,0 +1,15 @@
+language: c
+script:
+- mkdir tools
+- cd tools
+- wget http://commondatastorage.googleapis.com/git-repo-downloads/repo
+- chmod a+x repo
+- cd ../
+# initialize repo
+- sudo mkdir /usr/local/share/ca-certificates/cacert.org
+- sudo wget -P /usr/local/share/ca-certificates/cacert.org http://www.cacert.org/certs/root.crt http://www.cacert.org/certs/class3.crt
+- sudo update-ca-certificates
+- mkdir replicant-4.2
+- cd replicant-4.2
+- ../tools/repo init -u https://git.replicant.us/replicant/manifest.git -b replicant-4.2
+- ../tools/repo sync
